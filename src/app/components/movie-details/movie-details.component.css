@@ -1,0 +1,265 @@
+.movie-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.movie-details {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+.movie-poster img {
+    width: 250px;
+    cursor: pointer;
+}
+
+.movie-info {
+    flex: 1;
+}
+
+.movie-title {
+    font-size: 28px;
+    margin: 0;
+}
+
+.movie-title span {
+    opacity: 0.8;
+}
+
+.movie-summary {
+    font-size: 0.9rem;
+}
+
+.dot::before {
+    content: " • ";
+    color: white;
+}
+
+.movie-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.movie-credits {
+    display: flex;
+    justify-content: space-between;
+    gap: 15%;
+}
+
+.movie-credits p {
+    flex: 1;
+}
+
+.movie-actors, .movie-directors, .movie-distributor {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.movie-actors span, .movie-directors span, .movie-distributor span {
+    font-weight: normal;
+}
+
+.movie-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.movie-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 1400px;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 90%;
+    scrollbar-width: none;
+}
+
+.gallery-track::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-track img {
+    max-width: 300px;
+    object-fit: cover;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gallery-track img:hover {
+    transform: scale(1.1);
+    opacity: 0.85;
+}
+
+.gallery-arrow {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 14px;
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: 0.3s;
+    border-radius: 6px;
+}
+
+.gallery-arrow.left {
+    left: 20px;
+}
+
+.gallery-arrow.right {
+    right: 20px;
+}
+
+.gallery-arrow:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.movie-reviews {
+    max-width: 1400px;
+    padding: 20px;
+}
+
+.review-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.review-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3%;
+}
+
+.review-action {
+    text-align: center;
+}
+
+.review-action p {
+    margin-top: 0;
+}
+
+.review-summary-item {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.review-title {
+    font-size: 0.9rem;
+}
+
+.review-value {
+    margin-top: 3%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Average Rating */
+.rating-stars {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating-stars mat-icon {
+    color: var(--icon-color);
+    font-size: 1.5rem;
+}
+
+.date-range {
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.rating-label {
+    width: 20px;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.rating-bar {
+    width: 70%;
+    height: 8px;
+    background-color: #3f4948;
+    margin: 0 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rating-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    background-color: var(--icon-color);
+}
+
+.rating-values {
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+}
+
+.rating-percentage {
+    font-size: 0.9rem;
+}
+
+.rating-count {
+    font-size: 0.9rem;
+}
+
+.reviews {
+    flex: 1;
+    flex-direction: column;
+}
+
+.review {
+    margin-bottom: 2%;
+}
+
+.review mat-card-header {
+    justify-content: flex-start;
+    text-align: left;
+}
+

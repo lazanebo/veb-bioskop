@@ -1,0 +1,46 @@
+<div mat-dialog-content class="dialog-container">
+    @switch (data.type) {
+        @case ('success') {
+            <div class="icon-wrapper success">
+                <span class="success-line success-tip"></span>
+                <span class="success-line success-long"></span>
+                <div class="success-ring"></div>
+            </div>
+        }
+        @case ('error') {
+            <div class="icon-wrapper error flex-container">
+                <span class="x-mark">
+                    <span class="x-mark-line-left"></span>
+                    <span class="x-mark-line-right"></span>
+                </span>
+            </div>
+        }
+        @case ('warning') {
+            <div class="icon-wrapper warning flex-container">
+                <div class="icon-content">!</div>
+            </div>
+        }
+        @case ('info') {
+            <div class="icon-wrapper info flex-container">
+                <div class="icon-content">i</div>
+            </div>
+        }
+    }
+
+    <h2>{{ data.title }}</h2>
+    <p>{{ data.message }}</p>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-flat-button mat-dialog-close (click)="confirm()">
+        <mat-icon fontIcon="check"/>
+        Potvrdi
+    </button>
+
+    @if (data.showCancelButton) {
+        <button mat-stroked-button (click)="cancel()">
+            <mat-icon fontIcon="close"/>
+            Otkaži
+        </button>
+    }
+</div>

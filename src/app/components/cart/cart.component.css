@@ -1,0 +1,61 @@
+.cart-container {
+    display: flex;
+    padding: 20px;
+    margin-top: 3%;
+}
+
+.cart-empty {
+    text-align: center;
+    flex: 1;
+}
+
+.cart-icon {
+    font-size: 48px;
+    color: #333;
+}
+
+.cart-items {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.cart-item {
+    display: flex;
+    margin: 0 20px 20px 0;
+}
+
+.cart-item mat-card-content {
+    display: flex;
+    gap: 20px;
+}
+
+.cart-item img {
+    width: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.reservation-summary {
+    padding: 20px;
+    height: fit-content;
+}
+
+.reservation-summary h3 {
+    margin-top: 0;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.total-amount {
+    margin-top: 30px;
+}
+
+.reserve-btn {
+    width: 100%;
+}

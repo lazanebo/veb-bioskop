@@ -1,0 +1,166 @@
+<div class="container">
+
+    @if (movie) {
+        <div class="movie-container">
+            <div class="movie-details">
+                <div class="movie-poster" (click)="openPosterDialog()">
+                    <img src="{{movie.posterPath}}" alt="{{movie.title}}">
+                </div>
+
+                <div class="movie-info">
+                    <h1 class="movie-title">
+                        {{ movie.title }}
+                        <span>({{ movie.startDate | date:'yyyy' }})</span>
+                    </h1>
+                    <div class="movie-summary">
+                        <span>{{ movie.startDate | date:'dd.MM.yyyy' }}</span>
+                        <span class="dot"></span>
+                        <span>{{ movie.genres.join(', ') }}</span>
+                        <span class="dot"></span>
+                        <span>{{ formatDuration(movie.duration) }}</span>
+                        <span class="dot"></span>
+                        <span>{{ movie.technologies[0] }}</span>
+                    </div>
+                    <p class="movie-description">{{ movie.description }}</p>
+                    <div class="movie-credits">
+                        <p class="movie-actors">
+                            Glumci:
+                            <br>
+                            <span>{{ movie.actors.join(', ') }}</span>
+                        </p>
+                        <p class="movie-directors">
+                            Režiseri:
+                            <br>
+                            <span>{{ movie.directors.join(', ') }}</span>
+                        </p>
+                        <p class="movie-distributor">
+                            Distributor:
+                            <br>
+                            <span>{{ movie.distributorName }}</span>
+                        </p>
+                    </div>
+                    <div class="movie-actions">
+                        <button mat-flat-button class="cart-button" (click)="addToCart()">
+                            <mat-icon fontIcon="shopping_cart"/>
+                            Dodaj u korpu
+                        </button>
+                        <a mat-flat-button class="trailer-button" href="{{movie.trailerUrl}}" target="_blank">
+                            <mat-icon fontIcon="movie"/>
+                            Pogledaj trailer
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="movie-gallery">
+                <button class="gallery-arrow left" (click)="previousImage()">&#10094;</button>
+                <div class="gallery-track" #galleryContainer>
+
+                    @for (image of movie.gallery; track image; let index = $index) {
+                        <img [src]="image" alt="Gallery Image" (click)="openGalleryDialog(index)">
+                    }
+
+                </div>
+                <button class="gallery-arrow right" (click)="nextImage()">&#10095;</button>
+            </div>
+
+            <div class="movie-reviews">
+                <div class="review-header">
+                    <h2>Recenzije</h2>
+                    <div class="date-range">March 2021 - February 2022</div>
+                </div>
+                <div class="review-content">
+                    <div class="flex-column">
+                        <div class="review-summary-item">
+                            <div class="review-title">Ukupan broj recenzija</div>
+                            <div class="review-value">
+                                {{ (reviews$ | async)?.length }}
+                            </div>
+                        </div>
+
+                        <div class="review-summary-item">
+                            <div class="review-title">Prosečna ocena</div>
+                            <div class="review-value">{{ averageRating.toFixed(1) }}/10</div>
+                            <div class="rating-stars">
+                                @for (star of getStarIcons(); track $index) {
+                                    <mat-icon fontIcon="star"/>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="review-summary-item rating-breakdown">
+                            @for (rating of getRatingDistribution(); track $index) {
+                                <div class="rating-row">
+                                    <span class="rating-label">{{ rating.stars }}</span>
+                                    <div class="rating-bar">
+                                        <div class="rating-fill"
+                                             [ngStyle]="{ 'width': rating.percentage + '%' }">
+                                        </div>
+                                    </div>
+                                    <div class="rating-values">
+                                        <span class="rating-percentage">{{ rating.percentage }}%</span>
+                                        <span class="rating-count">({{ rating.count }})</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="review-action">
+                            <p>Recenzirajte ovaj film</p>
+                            <p>Podelite mišljenje sa drugim korisnicima</p>
+                            <button mat-flat-button class="cart-button" (click)="openMovieReviewDialog()">
+                                <mat-icon fontIcon="reviews"></mat-icon>
+                                Napišite recenziju
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="reviews">
+                        @if ((reviews$ | async)?.length === 0) {
+                            <div>
+                                <p>Nema recenzija za ovaj film.</p>
+                            </div>
+                        }
+
+                        @for (review of reviews$ | async; track review) {
+                            <mat-card class="review" appearance="outlined">
+                                <mat-card-header>
+                                    <img mat-card-avatar [src]="'https://ui-avatars.com/api/?name=' + review.username">
+                                    <mat-card-title>{{ review.username }}</mat-card-title>
+                                    <mat-card-subtitle>{{ review.createdAt | date:'dd.MM.yyyy' }}</mat-card-subtitle>
+                                </mat-card-header>
+
+                                <mat-card-content>
+                                    <p>
+                                        Ocena: {{ review.rating }}
+                                    </p>
+                                    <p>
+                                        {{ review.title }}
+                                    </p>
+                                    <p>
+                                        {{ review.content }}
+                                    </p>
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <button mat-button>
+                                        <mat-icon fontIcon="edit"/>
+                                        Izmeni
+                                    </button>
+                                    <button mat-button>
+                                        <mat-icon fontIcon="delete"/>
+                                        Obriši
+                                    </button>
+                                </mat-card-actions>
+                            </mat-card>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (!movie) {
+        <app-loading/>
+    }
+</div>
